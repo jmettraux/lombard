@@ -1,0 +1,11 @@
+
+abbreviation,name,metal,latin,value
+
+b, bezant,   au, bizantius aureus,  7s
+l, pound,    ag, libra,            20s
+m, mark,     ag, marca,            10s
+s, shilling, bz, solidus,           1s
+d, pence,    bz, denarius,         12d
+#ml, maille, bz, maille,           24ml, half a penny
+#f,  ferlin, bz, ferlin,           48f,  quarter of a penny
+
