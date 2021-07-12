@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+
+$: << 'lib'
+require 'lombard'
+
+p ARGV
+p Lombard::VERSION
+
