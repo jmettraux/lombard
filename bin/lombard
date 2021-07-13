@@ -3,6 +3,10 @@
 $: << 'lib'
 require 'lombard'
 
+if ARGV.include?('--version')
+  puts "lombard #{Lombard::VERSION}"
+  exit 0
+end
+
 p ARGV
-p Lombard::VERSION
 
