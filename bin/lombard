@@ -8,5 +8,32 @@ if ARGV.include?('--version')
   exit 0
 end
 
+
+params = %w[ d data ]
+  .map { |e| "-#{e}" }
+
+args = {}
+
+loop do
+  a = ARGV.shift; break unless a
+  if params.include?(a)
+    args[a[1..-1].to_sym] = ARGV.shift
+  else
+    args[a.to_sym] = true
+  end
+end
+
+d =
+  args[:data] || args[:d]; d = d && "var/#{d}"
+dir =
+  d && File.directory?(d) ?
+  d :
+  Dir['var/*'].select { |pa| File.directory?(pa) }.sort.first
+
 p ARGV
+p args
+p dir
+
+l = Lombard.new(dir)
+p l
 
