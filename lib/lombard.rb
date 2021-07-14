@@ -32,7 +32,8 @@ class Lombard
           en = item[:en]; next unless en
           item[:kat] = kat
           item[:v] = @coins.normalize(item[:value])
-          h[en] = item
+          item[:ken] = [ kat, item[:en] ].join(' / ')
+          h[item[:ken]] = item
         end
         h }
 #.tap { |x| pp x }
@@ -68,14 +69,15 @@ class Lombard
 
       ta.style = { border_top: false, border_bottom: false }
 
-      ta.headings = [ 'name', 'extra', 'v', 'v', 'r', 'rs' ]
+      ta.headings = [ 'kat', 'name', 'extra', 'v', 'v', 'r', 'rs' ]
 
       to_a(opts).each do |e|
         ta << [
-          e[:en], e[:extra],
+          e[:kat], e[:en],
+          e[:extra].to_s.match?(/kg/) ? e[:extra] : '',
           ar(e[:value]), ar(e[:v]),
           e[:r] ? '*' : '',
-          e[:rs] ]
+          e[:rs].collect(&:to_comma_s).join(' / ') ]
       end
     end
   end
@@ -249,7 +251,7 @@ end
 
 class Integer
 
-  def to_comma_s
+  def to_comma_s(d=3)
 
     #to_s.reverse.scan(/\d{1,3}/).join("'").reverse
     to_s.reverse.scan(/\d{1,3}/).join(',').reverse
@@ -258,9 +260,9 @@ end
 
 class Float
 
-  def to_comma_s
+  def to_comma_s(d=3)
 
-    to_i.to_comma_s + '.' + to_s.split('.').last
+    to_i.to_comma_s + '.' + to_s.split('.').last[0, d]
   end
 end
 
