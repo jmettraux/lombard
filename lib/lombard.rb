@@ -11,6 +11,8 @@ class Lombard
 
   LANGS = %i[ en fr la ]
 
+  attr_reader :categories, :items
+
   def initialize(dir)
 
     @dir = dir
@@ -31,7 +33,29 @@ class Lombard
           h[en] = item
         end
         h }
-.tap { |x| pp x }
+#.tap { |x| pp x }
+  end
+
+  def to_a(opts)
+
+    pivot = opts[:pivot] || 'wages'
+    kats = opts[:cats]
+    sort = opts[:sort] || :en
+
+    @items.values
+      .inject([]) { |a, e|
+        a << e if (
+          kats == nil ||
+          kats.include?(e[:kat]) ||
+          kats.find { |k| e[:kat].index(k) })
+        a }
+      .sort_by { |e|
+        e[sort] }
+  end
+
+  def to_table(opts)
+  end
+  def to_csv(opts)
   end
 
   class Coins

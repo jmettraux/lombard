@@ -35,10 +35,10 @@ dir =
   d :
   Dir['var/*'].select { |pa| File.directory?(pa) }.sort.first
 
-p ARGV
-p args
-p dir
-
 l = Lombard.new(dir)
-p l
+
+#p l.categories.keys
+puts l.to_a(pivot: 'wages', cats: %w[ clothes food ])
+#puts l.to_table(pivot: 'wages', cats: %w[ clothes food ])
+#puts l.to_csv(...
 
