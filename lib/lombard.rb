@@ -49,7 +49,7 @@ class Lombard
     nrefs = @items.values.select { |i| i[:en].index(ref) }
     refs = krefs.any? ? krefs : nrefs
 
-    @items.values
+    refs, items = @items.values
       .inject([]) { |a, e|
         a << e if (
           kats == nil ||
@@ -57,27 +57,36 @@ class Lombard
           kats.find { |k| e[:kat].index(k) })
         a }
       .each { |e|
-        e[:r] = refs.include?(e)
+        e[:r] = refs.index(e)
         e[:rs] = refs.collect { |r| e[:v] / r[:v] } }
       .sort_by { |e|
         e[sort] }
+      .partition { |e|
+        e[:r] }
+
+    refs + items
   end
 
   def to_table(opts={})
+
+    items = to_a(opts)
 
     Terminal::Table.new do |ta|
 
       ta.style = { border_top: false, border_bottom: false }
 
-      ta.headings = [ 'kat', 'name', 'extra', 'v', 'v', 'r', 'rs' ]
+      ta.headings =
+        [ 'kat', 'name', 'extra', 'v', 'v', *([ 'r' ] * items.first[:rs].size) ]
 
-      to_a(opts).each do |e|
+      items.each do |e|
+
+        rs = e[:rs].collect { |ee| ee.to_f.to_comma_s(1) }
+
         ta << [
           e[:kat], e[:en],
           e[:extra].to_s.match?(/kg/) ? e[:extra] : '',
           ar(e[:value]), ar(e[:v]),
-          e[:r] ? '*' : '',
-          e[:rs].collect(&:to_comma_s).join(' / ') ]
+          *rs.collect { |e| e == '1.0' ? 'R' : ar(e) } ]
       end
     end
   end
