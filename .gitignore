@@ -4,3 +4,7 @@
 
 Gemfile.lock
 
+.bxsinfo.yaml
+.errors
+.rspec.out
+

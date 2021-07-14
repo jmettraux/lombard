@@ -3,5 +3,7 @@ source 'https://rubygems.org'
 
 gem 'terminal-table'
 
-#gem 'rspec'
+group :test do
+  gem 'rspec'
+end
 
