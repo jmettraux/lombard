@@ -38,7 +38,7 @@ class Lombard
 #.tap { |x| pp x }
   end
 
-  def to_a(opts)
+  def to_a(opts={})
 
     pivot = opts[:pivot] || 'wages'
     kats = opts[:cats]
@@ -55,9 +55,29 @@ class Lombard
         e[sort] }
   end
 
-  def to_table(opts)
+  def to_table(opts={})
+
+    a = to_a(opts)
+
+    Terminal::Table.new do |ta|
+
+      ta.style = { border_top: false, border_bottom: false }
+
+      ta.headings = [ 'name', 'extra', 'v', 'v' ]
+
+      to_a(opts).each do |e|
+        ta << [
+          e[:en],
+          e[:extra],
+          { value: e[:value], alignment: :right },
+          { value: e[:nvalue], alignment: :right } ]
+      end
+    end
   end
-  def to_csv(opts)
+
+  def to_csv(opts={})
+
+    a = to_a(opts)
   end
 
   class Value
@@ -101,6 +121,11 @@ class Lombard
       @a == other.to_a
     end
 
+    def to_s
+
+      @a.collect { |e| "#{e[0].to_comma_s}#{e[1]}" }.join
+    end
+
     def *(n)
 
       Lombard::Value.make(@a.collect { |e| [ n * e[0], e[1] ] })
@@ -142,6 +167,8 @@ class Lombard
     end
 
     def normalize(v)
+
+      v = v.is_a?(String) ? Lombard::Value.new(v) : v
 
       v.to_a
         .collect { |e|
@@ -188,6 +215,23 @@ class Lombard
             hh } }
       end
     end
+  end
+end
+
+class Integer
+
+  def to_comma_s
+
+    #to_s.reverse.scan(/\d{1,3}/).join("'").reverse
+    to_s.reverse.scan(/\d{1,3}/).join(',').reverse
+  end
+end
+
+class Float
+
+  def to_comma_s
+
+    to_i.to_comma_s + '.' + to_s.split('.').last
   end
 end
 
