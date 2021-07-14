@@ -43,5 +43,24 @@ describe Lombard::Value do
       end
     end
   end
+
+  describe '#/(v)' do
+
+    {
+
+      [ '120d', '6d' ] => 20,
+      [ '3d', '6d' ] => 0.5,
+
+    }.each do |(k0, k1), v|
+
+      it "computes #{k0} / #{k1} as #{v}" do
+
+        v0 = Lombard::Value.new(k0)
+        v1 = Lombard::Value.new(k1)
+
+        expect(v0 / v1).to eq(v)
+      end
+    end
+  end
 end
 

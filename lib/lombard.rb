@@ -127,6 +127,25 @@ class Lombard
       Lombard::Value.make(@a.collect { |e| [ n * e[0], e[1] ] })
     end
 
+    def /(v)
+
+      c0 = single_coin
+      c1 = v.single_coin
+
+      fail ArgumentError.new("left value #{to_s} not normalized") \
+        unless c0
+      fail ArgumentError.new("right value #{v.to_s} not normalized") \
+        unless c1
+      fail ArgumentError.new("not the same coin #{to_s} vs #{v.to_s}") \
+        if c0 != c1
+
+      r = @a.first[0].to_f / v.to_a.first[0]
+      s = r.to_s
+
+      return r.to_i if s.match?(/\.0/) # :-(
+      r
+    end
+
     def single_number; @a.size == 1 && @a[0][0]; end
     def single_coin; @a.size == 1 && @a[0][1]; end
 

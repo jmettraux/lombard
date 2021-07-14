@@ -38,9 +38,10 @@ dir =
 l = Lombard.new(dir)
 
 #p l.categories.keys
+#puts
+#puts l.to_a(pivot: 'wages', cats: %w[ clothes food ])
 puts
-puts l.to_a(pivot: 'wages', cats: %w[ clothes food ])
-puts
-puts l.to_table(pivot: 'wages', cats: %w[ clothes food ])
+#puts l.to_table(pivot: 'wages', cats: %w[ clothes food ])
+puts l.to_table(pivot: 'wages')
 #puts l.to_csv(...
 
