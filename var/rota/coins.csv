@@ -1,11 +1,11 @@
 
 abb,en,metal,la,value
 
-b, bezant,   au, bizantius aureus,  7s
-l, pound,    ag, libra,            20s
-m, mark,     ag, marca,            10s
-s, shilling, bz, solidus,           1s
-d, pence,    bz, denarius,         12d
-#ml, maille, bz, maille,           24ml, half a penny
-#f,  ferlin, bz, ferlin,           48f,  quarter of a penny
+b, bezant,   au, bizantius aureus,  7*12d
+l, pound,    ag, libra,            20*12d
+m, mark,     ag, marca,            10*12d
+s, shilling, bz, solidus,             12d
+d, pence,    bz, denarius,             1d
+#ml, maille, bz, maille, 1/2d, half a penny
+#f,  ferlin, bz, ferlin, 1/4d,  quarter of a penny
 

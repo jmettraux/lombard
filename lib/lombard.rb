@@ -30,6 +30,7 @@ class Lombard
         items.each do |item|
           en = item[:en]; next unless en
           item[:kat] = kat
+          item[:nvalue] = @coins.normalize(item[:value])
           h[en] = item
         end
         h }
@@ -63,23 +64,41 @@ class Lombard
     def initialize(path)
 
       @data = Csv.load(path)
+
+      @data.each do |e|
+        m = e[:value].match(/^(\d+)([*\/])?(\d+)?([a-z]{1,2})$/)
+        fail ArgumentError.new("cannot make sense of #{e[:value].inspect}") \
+          unless m
+        @pivot ||= m[4]
+        o = m[2] || '*'
+        lr = [ m[1], m[3] ].compact
+        lr.unshift('1') if lr.size < 2
+        l, r = lr[0].to_i, lr[1].to_i
+        e[:v] = (o == '*') ? (l * r) : (lr.to_f / r)
+      end
+@data.each { |e| p e }
+p @pivot
     end
 
-    class << self
+    def normalize(value)
 
-      def parse(s)
+      parse_value(value)
+    end
 
-        r = []
+    protected
 
-        ss = StringScanner.new(s)
-        loop do
-          n = ss.scan(/\d+(\.\d+)?/); break unless n
-          c = ss.scan(/[a-zA-Z]{1,2}/)
-          r << [ n.index('.') ? n.to_f : n.to_i, c.to_sym ]
-        end
+    def parse_value(s)
 
-        r
+      r = []
+
+      ss = StringScanner.new(s)
+      loop do
+        n = ss.scan(/\d+(\.\d+)?/); break unless n
+        c = ss.scan(/[a-zA-Z]{1,2}/)
+        r << [ n.index('.') ? n.to_f : n.to_i, c.to_sym ]
       end
+
+      r
     end
   end
 
@@ -96,19 +115,8 @@ class Lombard
         d.map { |r|
           r.each_with_index.inject({}) { |hh, (c, i)|
             k = (h[i] || "k#{i}").to_sym
-            #hh[k] = c ? c.strip : c
-            hh[k] = inflate(k, c)
+            hh[k] = c.respond_to?(:strip) ? c.strip : c
             hh } }
-      end
-
-      protected
-
-      def inflate(k, v)
-
-        case k
-        when :value then Coins.parse(v)
-        else v.respond_to?(:strip) ? v.strip : v
-        end
       end
     end
   end
