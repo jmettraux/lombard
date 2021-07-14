@@ -30,5 +30,24 @@ describe Lombard::Coins do
       end
     end
   end
+
+  describe '#change' do
+
+    {
+
+      '24d' => '2s',
+      '120d' => '1m',
+      '1m20s1d' => '1L1m1d',
+
+    }.each do |k, v|
+
+      it "changes #{k} to #{v}" do
+
+        cs = Lombard::Coins.new('var/rota/coins.csv')
+
+        expect(cs.change(k).to_s).to eq(v)
+      end
+    end
+  end
 end
 

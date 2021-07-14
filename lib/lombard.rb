@@ -188,6 +188,8 @@ class Lombard
       core[:v] = core[:v0]
 
       inflate
+
+      @data.sort_by! { |e| - e[:v].single_number }
     end
 
     def normalize(v)
@@ -203,6 +205,25 @@ class Lombard
           a }
         .deflect { |a|
           Lombard::Value.make([ a ]) }
+    end
+
+    def change(v)
+
+      v = v.is_a?(String) ? Lombard::Value.new(v) : v
+      v1 = normalize(v)
+
+      n = v1.single_number
+      a = []
+
+      @data.each do |c|
+        cn = c[:v].single_number
+        next if cn > n
+        x = n.to_i / cn
+        a << [ x, c[:abb] ]
+        n = n - x * cn
+      end
+
+      Lombard::Value.make(a)
     end
 
     protected
