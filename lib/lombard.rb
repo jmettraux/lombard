@@ -63,7 +63,9 @@ class Lombard
 
       def load(path)
 
-        h, *d = ::CSV.read(path).reject(&:empty?)
+        h, *d = ::CSV.read(path)
+          .reject(&:empty?)
+          .reject { |r| r[0].match(/^\s*#/) }
 
         d.map { |r|
           r.each_with_index.inject({}) { |hh, (c, i)|
