@@ -2,6 +2,7 @@
 require 'csv'
 require 'strscan'
 
+require 'ect'
 require 'terminal-table'
 
 
@@ -100,9 +101,19 @@ class Lombard
       @a == other.to_a
     end
 
+    def *(n)
+
+      Lombard::Value.make(@a.collect { |e| [ n * e[0], e[1] ] })
+    end
+
+    def single_number; @a.size == 1 && @a[0][0]; end
+    def single_coin; @a.size == 1 && @a[0][1]; end
+
     class << self
 
       def make(a)
+
+        a = [ a ] unless a.first.is_a?(Array)
 
         v = Lombard::Value.allocate
         v.instance_eval { @a = a }
@@ -116,42 +127,47 @@ class Lombard
 
     def initialize(path)
 
-      @data =
-        Csv.load(path)
-      @pivot =
-        @data.find { |e| e[:value].gsub(/\s+/, '') == "1#{e[:abb]}" }
-      @pivoc =
-        @pivot[:abb].to_sym
-
+      @data = Csv.load(path)
       @data.each do |e|
-        e[:v] = Lombard::Value.new(e[:value])
+        e[:abb] = e[:abb].to_sym
+        e[:v0] = Lombard::Value.new(e[:value])
       end
-@data.each { |e| p e }
-print 'pivot: '; p @pivot
+
+      @pivot = @data.find { |e| e[:value].gsub(/\s+/, '') == "1#{e[:abb]}" }
+      @pivot[:v] = @pivot[:v0]
+      @pivoc = @pivot[:abb].to_sym
+
+      inflate
+#@data.each { |e| p e }
     end
 
-    def normalize(value)
+    def normalize(v)
 
-      a = value.to_a
-        .collect { |e| _normalize(e) }
-        .inject([ 0, @pivoc ]) { |a, e| a[0] = a[0] + e[0]; a }
-
-      Value.make([ a ])
-    end
-
-    def lookup(c)
-
-      @data.find { |e| e[:abb].to_sym == c }
+      v.to_a
+        .collect { |e|
+          lookup(e[1])[:v] * e[0] }
+        .inject([ 0, nil ]) { |a, v|
+          a[0] = a[0] + v.single_number
+          a[1] ||= v.single_coin
+          a }
+        .deflect { |a|
+          Lombard::Value.make([ a ]) }
     end
 
     protected
 
-    def _normalize(v)
+    def lookup(c); @data.find { |e| e[:abb] == c }; end
 
-p v
-      return v if v[1] == @pivoc
-p lookup(v[1])
-[ 0, @pivoc ]
+    def inflate
+
+      es = @data.select { |e| ! e[:v] }; return if es.empty?
+
+      es.each do |e|
+        next if e[:v0].to_a.find { |ee| ! lookup(ee[1])[:v] }
+        e[:v] = normalize(e[:v0])
+      end
+
+      inflate
     end
   end
 

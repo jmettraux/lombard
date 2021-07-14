@@ -14,15 +14,17 @@ describe Lombard::Coins do
 
     {
 
-      '12d' => [ 12, 'd' ],
-      '1l' => [ 240, 'd' ],
+      '12d' => [ 12, :d ],
+      '1L' => [ 240, :d ],
+      '1L3d' => [ 240 + 3, :d ],
+      '1/4d' => [ 0.25, :d ],
 
     }.each do |k, v|
 
       it "turns #{k.inspect} into #{v.join}" do
 
         cs = Lombard::Coins.new('var/rota/coins.csv')
-        v = Lombard::Value.new(k)
+        v = Lombard::Value.make(v)
 
         expect(cs.normalize(v)).to eq(v)
       end
