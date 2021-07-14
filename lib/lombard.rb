@@ -40,9 +40,13 @@ class Lombard
 
   def to_a(opts={})
 
-    pivot = opts[:pivot] || 'wages'
-    kats = opts[:cats]
+    ref = opts[:ref] || opts[:refs] || 'wages'
+    kats = opts[:cats] || opts[:cat]; kats = [ kats ] if kats.is_a?(String)
     sort = opts[:sort] || :en
+
+    krefs = @items.values.select { |i| i[:kat] == ref }
+    nrefs = @items.values.select { |i| i[:en].index(ref) }
+    refs = krefs.any? ? krefs : nrefs
 
     @items.values
       .inject([]) { |a, e|
@@ -51,22 +55,27 @@ class Lombard
           kats.include?(e[:kat]) ||
           kats.find { |k| e[:kat].index(k) })
         a }
+      .each { |e|
+        e[:r] = refs.include?(e)
+        e[:rs] = refs.collect { |r| e[:v] / r[:v] } }
       .sort_by { |e|
         e[sort] }
   end
 
   def to_table(opts={})
 
-    a = to_a(opts)
-
     Terminal::Table.new do |ta|
 
       ta.style = { border_top: false, border_bottom: false }
 
-      ta.headings = [ 'name', 'extra', 'v', 'v' ]
+      ta.headings = [ 'name', 'extra', 'v', 'v', 'r', 'rs' ]
 
       to_a(opts).each do |e|
-        ta << [ e[:en], e[:extra], ar(e[:value]), ar(e[:v]) ]
+        ta << [
+          e[:en], e[:extra],
+          ar(e[:value]), ar(e[:v]),
+          e[:r] ? '*' : '',
+          e[:rs] ]
       end
     end
   end
@@ -173,12 +182,10 @@ class Lombard
         e[:v0] = Lombard::Value.new(e[:value])
       end
 
-      @pivot = @data.find { |e| e[:value].gsub(/\s+/, '') == "1#{e[:abb]}" }
-      @pivot[:v] = @pivot[:v0]
-      @pivoc = @pivot[:abb].to_sym
+      core = @data.find { |e| e[:value].gsub(/\s+/, '') == "1#{e[:abb]}" }
+      core[:v] = core[:v0]
 
       inflate
-#@data.each { |e| p e }
     end
 
     def normalize(v)
