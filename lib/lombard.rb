@@ -79,7 +79,12 @@ class Lombard
         l = l && l.gsub(/[,_]/, ''); l = l && (l.index('.') ? l.to_f : l.to_i)
         r = r && r.gsub(/[,_]/, ''); r = r && (r.index('.') ? r.to_f : r.to_i)
 
-        v = r ? eval("#{l} #{o} #{r}") : l
+        v =
+          if r
+            o == '/' ? (l.to_f / r) : (l * r)
+          else
+            l
+          end
 
         @a << [ v, c.to_sym ]
       end
@@ -89,32 +94,64 @@ class Lombard
 
       @a
     end
+
+    def ==(other)
+
+      @a == other.to_a
+    end
+
+    class << self
+
+      def make(a)
+
+        v = Lombard::Value.allocate
+        v.instance_eval { @a = a }
+
+        v
+      end
+    end
   end
 
   class Coins
 
     def initialize(path)
 
-      @data = Csv.load(path)
+      @data =
+        Csv.load(path)
+      @pivot =
+        @data.find { |e| e[:value].gsub(/\s+/, '') == "1#{e[:abb]}" }
+      @pivoc =
+        @pivot[:abb].to_sym
 
       @data.each do |e|
-        m = e[:value].match(/^(\d+)([*\/])?(\d+)?([a-z]{1,2})$/)
-        fail ArgumentError.new("cannot make sense of #{e[:value].inspect}") \
-          unless m
-        @pivot ||= m[4]
-        o = m[2] || '*'
-        lr = [ m[1], m[3] ].compact
-        lr.unshift('1') if lr.size < 2
-        l, r = lr[0].to_i, lr[1].to_i
-        e[:v] = (o == '*') ? (l * r) : (lr.to_f / r)
+        e[:v] = Lombard::Value.new(e[:value])
       end
 @data.each { |e| p e }
-p @pivot
+print 'pivot: '; p @pivot
     end
 
     def normalize(value)
 
-      #parse_value(value)
+      a = value.to_a
+        .collect { |e| _normalize(e) }
+        .inject([ 0, @pivoc ]) { |a, e| a[0] = a[0] + e[0]; a }
+
+      Value.make([ a ])
+    end
+
+    def lookup(c)
+
+      @data.find { |e| e[:abb].to_sym == c }
+    end
+
+    protected
+
+    def _normalize(v)
+
+p v
+      return v if v[1] == @pivoc
+p lookup(v[1])
+[ 0, @pivoc ]
     end
   end
 
