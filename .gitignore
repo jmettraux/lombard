@@ -2,3 +2,5 @@
 .vim*
 .ruby-version
 
+Gemfile.lock
+

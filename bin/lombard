@@ -1,7 +1,12 @@
 #!/usr/bin/env ruby
 
+require 'rubygems'
+require 'bundler/setup'
+
+
 $: << 'lib'
 require 'lombard'
+
 
 if ARGV.include?('--version')
   puts "lombard #{Lombard::VERSION}"

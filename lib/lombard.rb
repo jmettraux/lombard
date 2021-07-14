@@ -2,6 +2,8 @@
 require 'csv'
 require 'strscan'
 
+require 'terminal-table'
+
 
 class Lombard
 
