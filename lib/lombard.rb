@@ -59,6 +59,38 @@ class Lombard
   def to_csv(opts)
   end
 
+  class Value
+
+    def initialize(s)
+
+      @a = []
+
+      ss = StringScanner.new(s.strip)
+      loop do
+
+        l = ss.scan(/\s*[0-9,_]+(\.\d+)?/)
+        fail ArgumentError.new("invalid value #{s.inspect}") if ! l && ! ss.eos?
+        break unless l
+
+        o = ss.scan(/\s*[*\/]/); o = o && o.strip
+        r = ss.scan(/\s*[0-9,_]+(\.\d+)?/)
+        c = ss.scan(/\s*[a-zA-Z]{1,2}/).strip
+
+        l = l && l.gsub(/[,_]/, ''); l = l && (l.index('.') ? l.to_f : l.to_i)
+        r = r && r.gsub(/[,_]/, ''); r = r && (r.index('.') ? r.to_f : r.to_i)
+
+        v = r ? eval("#{l} #{o} #{r}") : l
+
+        @a << [ v, c.to_sym ]
+      end
+    end
+
+    def to_a
+
+      @a
+    end
+  end
+
   class Coins
 
     def initialize(path)
@@ -82,23 +114,7 @@ p @pivot
 
     def normalize(value)
 
-      parse_value(value)
-    end
-
-    protected
-
-    def parse_value(s)
-
-      r = []
-
-      ss = StringScanner.new(s)
-      loop do
-        n = ss.scan(/\d+(\.\d+)?/); break unless n
-        c = ss.scan(/[a-zA-Z]{1,2}/)
-        r << [ n.index('.') ? n.to_f : n.to_i, c.to_sym ]
-      end
-
-      r
+      #parse_value(value)
     end
   end
 
