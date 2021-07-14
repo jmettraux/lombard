@@ -31,7 +31,7 @@ class Lombard
         items.each do |item|
           en = item[:en]; next unless en
           item[:kat] = kat
-          item[:nvalue] = @coins.normalize(item[:value])
+          item[:v] = @coins.normalize(item[:value])
           h[en] = item
         end
         h }
@@ -66,11 +66,7 @@ class Lombard
       ta.headings = [ 'name', 'extra', 'v', 'v' ]
 
       to_a(opts).each do |e|
-        ta << [
-          e[:en],
-          e[:extra],
-          { value: e[:value], alignment: :right },
-          { value: e[:nvalue], alignment: :right } ]
+        ta << [ e[:en], e[:extra], ar(e[:value]), ar(e[:v]) ]
       end
     end
   end
@@ -215,6 +211,13 @@ class Lombard
             hh } }
       end
     end
+  end
+
+  protected
+
+  def ar(v)
+
+    { value: v, alignment: :right }
   end
 end
 
