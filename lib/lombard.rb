@@ -12,7 +12,7 @@ class Lombard
 
   LANGS = %i[ en fr la ]
 
-  attr_reader :categories, :items
+  attr_reader :coins, :categories, :items
 
   def initialize(dir)
 
@@ -251,6 +251,14 @@ class Lombard
       return v1 if a.empty?
 
       Lombard::Value.make(a)
+    end
+
+    def to_s
+
+      @data
+        .reject { |e| e[:v].single_number == 1 }
+        .collect { |e| "1#{e[:abb]} => #{e[:v].to_s}" }
+        .join(', ')
     end
 
     protected

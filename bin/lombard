@@ -14,18 +14,15 @@ if ARGV.include?('--version')
 end
 
 
-params = %w[ d data ]
-  .map { |e| "-#{e}" }
+params = %i[ d data ]
 
 args = {}
 
 loop do
   a = ARGV.shift; break unless a
-  if params.include?(a)
-    args[a[1..-1].to_sym] = ARGV.shift
-  else
-    args[a.to_sym] = true
-  end
+  m = a.match(/^(-([^-])|--([^-]+))$/); next unless m
+  a = (m[3] || m[2]).to_sym
+  args[a] = params.include?(a) ? ARGV.shift : true
 end
 
 d =
@@ -37,12 +34,18 @@ dir =
 
 l = Lombard.new(dir)
 
+if args[:c] || args[:coins]
+  puts l.coins.to_s
+  exit 0
+end
+
 #p l.categories.keys
 #puts
 #puts l.to_a(ref: 'wages', cats: %w[ clothes food ])
 puts
 #puts l.to_table(ref: 'wages', cats: %w[ clothes food ])
 puts l.to_table(ref: 'wages')
-puts
+#puts
 #puts l.to_csv(...
 
+p args
