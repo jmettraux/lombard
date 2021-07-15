@@ -70,23 +70,35 @@ class Lombard
   def to_table(opts={})
 
     items = to_a(opts)
+    items = items + items.select { |e| e[:r] } if items.size > 40
 
     Terminal::Table.new do |ta|
 
+      w = items.first[:rs].size
+
       ta.style = { border_top: false, border_bottom: false }
 
-      ta.headings =
-        [ 'kat', 'name', 'extra', 'v', 'v', *([ 'r' ] * items.first[:rs].size) ]
+      ta.headings = [ 'kat', 'name', 'extra', 'v', 'v', *([ 'r' ] * w) ]
+
+      reffing = true
 
       items.each do |e|
+
+        if reffing && ! e[:r]
+          ta << [ ' ' ] * (5 + w)
+          reffing = false
+        elsif ! reffing && e[:r]
+          ta << [ ' ' ] * (5 + w)
+          reffing = true
+        end
 
         rs = e[:rs].collect { |ee| ee.to_f.to_comma_s(1) }
 
         ta << [
           e[:kat], e[:en],
-          e[:extra].to_s.match?(/kg/) ? e[:extra] : '',
+          e[:extra].to_s.match?(/\d+(kg|l|m\d+)?/) ? e[:extra] : '',
           ar(e[:value]), ar(e[:v]),
-          *rs.collect { |e| e == '1.0' ? 'R' : ar(e) } ]
+          *rs.collect { |ee| (e[:r] && ee == '1.0') ? 'R<<<' : ar(ee) } ]
       end
     end
   end

@@ -43,5 +43,6 @@ l = Lombard.new(dir)
 puts
 #puts l.to_table(ref: 'wages', cats: %w[ clothes food ])
 puts l.to_table(ref: 'wages')
+puts
 #puts l.to_csv(...
 
