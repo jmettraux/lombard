@@ -70,7 +70,9 @@ class Lombard
   def to_table(opts={})
 
     items = to_a(opts)
-    items = items + items.select { |e| e[:r] } if items.size > 40
+
+    lcount = `tput lines`.to_i
+    items = items + items.select { |e| e[:r] } if items.size > lcount + 2
 
     Terminal::Table.new do |ta|
 
