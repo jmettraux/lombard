@@ -1,38 +1,38 @@
 
 en,fr,extra,value
 
-chest,,,5m
-bag,,,5s
-"bag, large",,,10s
-"oil, for lamp",,5h,10s
-torch,,,5s
-rope,,20m 200kg,2m
-string,,50m,2s
-"rope, heavy",,30m 500kg, 4m
-"bottle, glass",,,3s
-"cup, glass",,,1s
-box,,20cm side,1m
-padlock,,,1m
-lock,,,2m
-file,,,5m
-crowbar,,,1m
-saw,,,1m
-hammer,,,10s
-mirror,,,1m
-candle,,,5d
-waterskin,,5l,1m
-gourd,,2l,10s
-"chain, iron",,1m,10m
-wax,,1kg,10s
-dye,,10m2,5s
-"instruments, medical",,,3m
-hourglass,,,1m
-saddle,,,150m
-harness and straps,,,15m
-parchment,,1s,10d
-quill,,,8d
-inkwell and ink,,,2s
-seal,sceau,,50m
-perfume,,,100m
-"instruments, geometry",,,10m
+Chest,,,5m
+Bag,,,5s
+"Bag, large",,,10s
+"Oil, for lamp",,5h,10s
+Torch,,,5s
+Rope,,20m 200kg,2m
+String,,50m,2s
+"Rope, heavy",,30m 500kg, 4m
+"Bottle, glass",,,3s
+"Cup, glass",,,1s
+Box,,20cm side,1m
+Padlock,,,1m
+Lock,,,2m
+File,,,5m
+Crowbar,,,1m
+Saw,,,1m
+Hammer,,,10s
+Mirror,,,1m
+Candle,,,5d
+Waterskin,,5l,1m
+Gourd,,2l,10s
+"~hain, iron",,1m,10m
+Wax,,1kg,10s
+Dye,,10m2,5s
+"Instruments, medical",,,3m
+Hourglass,,,1m
+Saddle,,,150m
+Harness and straps,,,15m
+Parchment,,1s,10d
+Quill,,,8d
+Inkwell and ink,,,2s
+Seal,sceau,,50m
+Perfume,,,100m
+"Instruments, geometry",,,10m
 

@@ -1,35 +1,35 @@
 
 en,fr,extra,value
 
-"bread, rye","pain de seigle, 1 miche",1kg,4d
-"bread, whole","pain entier, 1 miche",1kg,8d
-"bread, white","pain blanc, 1 miche",1kg,16d
-eggs,,6,4d
-milk,,1l,6d
-cheese,,1kg,20d
-butter,,1kg,15d
-oil,,1l,20d
-salt,,1kg,20d
-honey,,1kg,50d
-syrup,,1l,7d
-jam,,1kg,50d
-pork,,1kg,20d
-beef,,1kg,10d
-mutton,,1kg,6d
-lamb,,1kg,24d
-fish,,1kg,6d
-chicken,,1,10d
-duck,,1,15d
-goose,,1,50d
-swan,,1,60d
-game,,1kg,20d
-boar,,1kg,25d
-salted meat,,1kg,30d
-dried fish,,1kg,20d
-cider,,1l,8d
-beer,,1l,20d
-ale,,1l,30d
-brandy,eau de vie,1l,8s
-"wine, ordinary",,1l,24d
-"wine, quality",,1l,80d
+"Bread, rye","pain de seigle, 1 miche",1kg,4d
+"Bread, whole","pain entier, 1 miche",1kg,8d
+"Bread, white","pain blanc, 1 miche",1kg,16d
+Eggs,,6,4d
+Milk,,1l,6d
+Cheese,,1kg,20d
+Butter,,1kg,15d
+Oil,,1l,20d
+Salt,,1kg,20d
+Honey,,1kg,50d
+Syrup,,1l,7d
+Jam,,1kg,50d
+Pork,,1kg,20d
+Beef,,1kg,10d
+Mutton,,1kg,6d
+Lamb,,1kg,24d
+Fish,,1kg,6d
+Chicken,,1,10d
+Duck,,1,15d
+Goose,,1,50d
+Swan,,1,60d
+Game,,1kg,20d
+Boar,,1kg,25d
+Salted meat,,1kg,30d
+Dried fish,,1kg,20d
+Cider,,1l,8d
+Beer,,1l,20d
+Ale,,1l,30d
+Brandy,eau de vie,1l,8s
+"Wine, ordinary",,1l,24d
+"Wine, quality",,1l,80d
 
