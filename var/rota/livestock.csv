@@ -1,0 +1,22 @@
+
+en,fr,extra,value
+
+chicken,,1,5s
+sheep,,1,20m
+goat,,1,12m
+donkey,,1,20m
+mule,,1,30m
+rabbit,,1,3d
+"dog, hunting",,1,100m
+"dog, war",,1,200m
+cow,,1,150m
+pig,,1,15m
+"horse, pack",cheval de bât,1,100m
+"horse, palfrey",palefroi,1,400m
+"horse, steed",destrier,1,1000m
+"horse, steed heavy",destrier lourd,1,3000m
+"falcon, trained",,1,1000m
+"hawk, trained",,1,1500m
+"swallow, european",,1,1f
+"swallow, african",,1,2f
+

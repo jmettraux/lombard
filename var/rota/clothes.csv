@@ -1,0 +1,26 @@
+
+en,fr,extra,value
+
+"trousers, commoner",braies,,8s
+"shirt, commoner",chemise,,7s
+"pelisson, commoner",pélisson,worn above the linen under-tunic,10s
+"bliaut, commoner",bliaud,unisex overgarment,15s
+"coat, commoner",manteau,,35s
+"hat, commoner",chapeau,,5s
+"clogs, commoner",sabots,,10s
+"belt, commoner",ceinture,,6s
+"belt, woman, commoner",ceinture de dame,,10s
+
+"trousers, noble",braies,,8m
+"shirt, noble",chemise,,7m
+"pelisson, noble",pélisson,worn above the linen under-tunic,10m
+"bliaut, noble",bliaud,unisex overgarment,15m
+"coat, noble",manteau,,35m
+"fur coat, noble",manteau de fourrure,,50m
+"hat, noble",chapeau,,5m
+"boots, noble",bottes,,100m
+"belt, noble",ceinture,,6m
+"belt, woman, noble",ceinture de dame,,10m
+
+blanket,couverture,,3m
+

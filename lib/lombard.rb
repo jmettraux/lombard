@@ -98,7 +98,7 @@ class Lombard
 
         ta << [
           e[:kat], e[:en],
-          e[:extra].to_s.match?(/\d+(kg|l|m\d+)?/) ? e[:extra] : '',
+          ar(e[:extra].to_s.match?(/\d+(kg|l|m\d+)?/) ? e[:extra] : ''),
           ar(e[:value]), ar(e[:v]),
           *rs.collect { |ee| (e[:r] && ee == '1.0') ? 'R<<<' : ar(ee) } ]
       end
