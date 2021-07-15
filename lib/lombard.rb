@@ -80,7 +80,7 @@ class Lombard
 
       ta.style = { border_top: false, border_bottom: false }
 
-      ta.headings = [ 'kat', 'name', 'extra', 'v', 'v', *([ 'r' ] * w) ]
+      ta.headings = [ 'kat', 'name', 'extra', 'v0', 'v1', 'v', *([ 'r' ] * w) ]
 
       reffing = true
 
@@ -99,7 +99,7 @@ class Lombard
         ta << [
           e[:kat], e[:en],
           ar(e[:extra].to_s.match?(/\d+/) ? e[:extra] : ''),
-          ar(e[:value]), ar(e[:v]),
+          ar(e[:value]), ar(@coins.change(e[:v])), ar(e[:v]),
           *rs.collect { |ee| (e[:r] && ee == '1.0') ? 'R<<<' : ar(ee) } ]
       end
     end
@@ -187,6 +187,8 @@ class Lombard
 
       def make(a)
 
+        #fail ArgumentError.new("invalid input #{a.inspect}") if a == []
+
         a = [ a ] unless a.first.is_a?(Array)
 
         v = Lombard::Value.allocate
@@ -245,6 +247,8 @@ class Lombard
         a << [ x, c[:abb] ]
         n = n - x * cn
       end
+
+      return v1 if a.empty?
 
       Lombard::Value.make(a)
     end
