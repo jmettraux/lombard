@@ -82,7 +82,7 @@ class Lombard
 
       ta.headings = [ 'kat', 'name', 'extra', 'v0', 'v1', 'v', *([ 'r' ] * w) ]
 
-      reffing = true
+      reffing = items.find { |e| e[:r] }
 
       items.each do |e|
 
