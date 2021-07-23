@@ -251,7 +251,7 @@ class Lombard
       @data.each do |c|
         cn = c[:v].single_number
         next if cn > n
-        x = n.to_i / cn
+        x = (n / cn).to_i
         a << [ x, c[:abb] ]
         n = n - x * cn
       end
