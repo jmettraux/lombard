@@ -4,7 +4,7 @@ en,extra,value
 "College/boarding school",per week,24d
 "Inn, London, beds",per night,1d
 "Inn, rural, meal with drinks",,2d
-"Inn, heat and light private chamber",,1.25d
+"Inn, heat+light private chamber",,1.25d
 "Inn, beds for gentlemen",per night,0.5d
 "Inn, beds for servants",per night,0.25d
 "Inn, hot bath",,2d

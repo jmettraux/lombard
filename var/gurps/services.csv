@@ -1,0 +1,17 @@
+
+en,extra,value
+
+"Armour, clean & de-rust",,5d
+"Armour, overhaul & varnish",,16d
+"Carriage, maintenance",per year,20d
+"Cesspit, empty out",,80d
+"Courier, 1 horse",50km / 1d,12d
+"Courier, 2 horses",100km / 1d,18d
+"Ferry, river crossing",for man & horse,1d
+Guide,for one night,1d
+Milling grain,per quarter,1d
+"Minstrel, to play at an inn",,1d
+"Minstrel, xmas gig at manor",,36d
+"Stabling & care, warhorse",per day,5d1f
+"Stabling & care, foal",per day,1d2f
+
