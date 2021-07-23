@@ -1,0 +1,35 @@
+
+en,extra,value
+
+Ale,per gallon,2f
+Bacon,per side,9d
+Bread,1 loaf (24oz?),1f
+Cider,per tun,60d
+"Cheese, retail", per lb,2d
+"Cheese, whole", 80 lb,40d
+Eggs, per dozen,2f
+"Fish, herrings",per dozen,1d
+"Fish, Pike", whole 3’ long,80d
+"Fish, Sturgeon",per barrel,396d
+"Fruit, figs",per lb,1d2f
+"Fruit, pears",30,1d
+"Fruit, pomegranate",1,6d
+Gingerbread,per lb,36d
+"Grain, barley",per quarter,22d
+"Grain, oats",per quarter,16d
+"Grain, wheat",per quarter,38d
+Ham,whole,16d
+Onions,1 bushel,8d
+Partridges,per brace,4d2f
+Raisins,per lb,2d
+Salt,per bushel,3d
+Spices,per lb,150d
+Sugar,per lb,12d
+"Wine, fine claret",per tun (252 gal),480d
+"Wine, best",per gallon,5d
+"Wine, cheapest",per gallon,2d
+To feed a lord,per day,7d
+To feed a squire,per day,4d
+To feed yeoman,per day,3d
+To feed groom,per day,1d
+

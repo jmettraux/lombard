@@ -48,4 +48,5 @@ puts l.to_table(ref: 'wages')
 #puts
 #puts l.to_csv(...
 
-p args
+#p args
+

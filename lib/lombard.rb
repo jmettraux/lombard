@@ -123,9 +123,17 @@ class Lombard
         fail ArgumentError.new("invalid value #{s.inspect}") if ! l && ! ss.eos?
         break unless l
 
-        o = ss.scan(/\s*[*\/]/); o = o && o.strip
-        r = ss.scan(/\s*[0-9,_]+(\.\d+)?/)
-        c = ss.scan(/\s*[a-zA-Z]{1,2}/).strip
+        o =
+          ss.scan(/\s*[*\/]/); o = o && o.strip
+        r =
+          ss.scan(/\s*[0-9,_]+(\.\d+)?/)
+        c =
+          begin
+            ss.scan(/\s*[a-zA-Z]{1,2}/).strip
+          rescue
+            fail "failed to scan currency in #{s.inspect}"
+          end
+
 
         l = l && l.gsub(/[,_]/, ''); l = l && (l.index('.') ? l.to_f : l.to_i)
         r = r && r.gsub(/[,_]/, ''); r = r && (r.index('.') ? r.to_f : r.to_i)
