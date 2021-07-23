@@ -45,7 +45,7 @@ class Lombard
     kats = opts[:cats] || opts[:cat]; kats = [ kats ] if kats.is_a?(String)
     sort = opts[:sort] || :en
 
-    krefs = @items.values.select { |i| i[:kat] == ref }
+    krefs = @items.values.select { |i| i[:ref] != 'no' && i[:kat] == ref }
     nrefs = @items.values.select { |i| i[:en].index(ref) }
     refs = krefs.any? ? krefs : nrefs
 

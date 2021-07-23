@@ -3,13 +3,21 @@
 
 en,extra,value,ref
 
-"Master craftsman",day wage,3d,yes
-"Labourer",day wage,1d1f,yes
+"Master craftsman",1d,3d,yes
+"Labourer",1d,1d1f,yes
 
-#,"craftsman, armourer",day wage,5d2f,no
-#,"craftsman, carpenter",day wage,3d,no
-#,"craftsman, mason",day wage,4d,no
-#,"craftsman, weaver",day wage,2d2f,no
-#,"apprentice carpenter",day wage,1.75d,no
-#,"apprentice armourer",day wage,3.75d,no
+"craftsman, armourer",1d,5d2f,no
+"craftsman, carpenter",1d,3d,no
+"craftsman, mason",1d,4d,no
+"craftsman, weaver",1d,2d2f,no
+"apprentice carpenter",1d,1.75d,no
+"apprentice armourer",1d,3.75d,no
+
+Archer,1d,3d,no
+"Archer, mounted",1d,6d,no
+Knight banneret,1d,48d,no
+Knight,1d,24d,no
+"Infantryman, armoured",1d,6d,no
+"Man-at-arms, mounted",1d,12d,no
+Squire,1d,12d,no
 
