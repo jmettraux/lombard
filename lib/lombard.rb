@@ -87,10 +87,10 @@ class Lombard
       items.each do |e|
 
         if reffing && ! e[:r]
-          ta << [ ' ' ] * (5 + w)
+          ta << [ ' ' ] * (6 + w)
           reffing = false
         elsif ! reffing && e[:r]
-          ta << [ ' ' ] * (5 + w)
+          ta << [ ' ' ] * (6 + w)
           reffing = true
         end
 

@@ -7,46 +7,75 @@ require 'bundler/setup'
 $: << 'lib'
 require 'lombard'
 
+argh = {}
+arga = []
+  #
+loop do
+  a = ARGV.shift; break unless a
+  k = a; k = k[1..-1] while k[0, 1] == '-'
+  case a
+  when '-d', '--dir' then argh[k] = ARGV.shift
+  when /^-[a-zA-Z]$/ then argh[k] = true
+  when /^--[-a-zA-Z]+$/ then argh[k] = true
+  else arga << a
+  end
+end
 
-if ARGV.include?('--version')
+puts "-" * 80
+p argh
+p arga
+puts "-" * 80
+
+if argh['v'] || argh['version']
   puts "lombard #{Lombard::VERSION}"
   exit 0
 end
 
-
-params = %i[ d data ]
-
-args = {}
-
-loop do
-  a = ARGV.shift; break unless a
-  m = a.match(/^(-([^-])|--([^-]+))$/); next unless m
-  a = (m[3] || m[2]).to_sym
-  args[a] = params.include?(a) ? ARGV.shift : true
+if argh['h'] || argh['help']
+  puts
+  puts $0
+  puts
+  puts "  #{$0} rota"
+  puts "  #{$0} -d rota"
+  puts "    #==> outputs value list for \"La Table Ronde\""
+  puts
+  puts "  #{$0} wog"
+  puts "  #{$0} -d wog"
+  puts "    #==> outputs value list for \"Wolves of God\""
+  puts
+  puts "  #{$0} gurps"
+  puts "  #{$0} -d gurps"
+  puts "    #==> outputs value list for \"Gurps Medieval\""
+  puts
+  exit 0
 end
 
-d =
-  args[:data] || args[:d]; d = d && "var/#{d}"
-dir =
-  d && File.directory?(d) ?
-  d :
-  Dir['var/*'].select { |pa| File.directory?(pa) }.sort.first
+def is_dir?(path)
+  path && File.directory?(path) && Dir[File.join(path, '*.csv')].any?
+end
+  #
+d0 = argh['d'] || arga.shift
+d = d0
+d = "var/#{d}" unless is_dir?(d)
+d = Dir["var/*#{d0}*"].sort.first unless is_dir?(d)
+d = Dir["var/*"].sort.find { |e| is_dir?(e) } unless is_dir?(d)
+p d
 
-l = Lombard.new(dir)
+l = Lombard.new(d)
 
-if args[:c] || args[:coins]
+if argh['c'] || argh['coins']
   puts l.coins.to_s
   exit 0
 end
 
-#p l.categories.keys
+##p l.categories.keys
+##puts
+##puts l.to_a(ref: 'wages', cats: %w[ clothes food ])
 #puts
-#puts l.to_a(ref: 'wages', cats: %w[ clothes food ])
-puts
-#puts l.to_table(ref: 'wages', cats: %w[ clothes food ])
+##puts l.to_table(ref: 'wages', cats: %w[ clothes food ])
 puts l.to_table(ref: 'wages')
-#puts
-#puts l.to_csv(...
-
-#p args
+##puts
+##puts l.to_csv(...
+#
+##p args
 
