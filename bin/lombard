@@ -21,10 +21,10 @@ loop do
   end
 end
 
-puts "-" * 80
-p argh
-p arga
-puts "-" * 80
+#puts "-" * 80
+#p argh
+#p arga
+#puts "-" * 80
 
 if argh['v'] || argh['version']
   puts "lombard #{Lombard::VERSION}"
@@ -47,6 +47,19 @@ if argh['h'] || argh['help']
   puts "  #{$0} -d gurps"
   puts "    #==> outputs value list for \"Gurps Medieval\""
   puts
+  puts "  #{$0} rota food"
+  puts "    #==> outputs list for \"La Table Ronde\" food items"
+  puts "  #{$0} rota ood fabric"
+  puts "    #==> outputs list for \"La Table Ronde\" food, good, and fabric"
+  puts "  #{$0} rota weap"
+  puts "    #==> outputs list for \"La Table Ronde\" weapons"
+  puts
+  puts "  #{$0} wog food /i/"
+  puts "    #==> outputs list for WOG food items with an 'i'"
+  puts
+  puts "  #{$0} wog -R"
+  puts "    #==> outputs list for WOG but without wages reference"
+  puts
   exit 0
 end
 
@@ -59,7 +72,6 @@ d = d0
 d = "var/#{d}" unless is_dir?(d)
 d = Dir["var/*#{d0}*"].sort.first unless is_dir?(d)
 d = Dir["var/*"].sort.find { |e| is_dir?(e) } unless is_dir?(d)
-p d
 
 l = Lombard.new(d)
 
@@ -68,14 +80,13 @@ if argh['c'] || argh['coins']
   exit 0
 end
 
-##p l.categories.keys
-##puts
-##puts l.to_a(ref: 'wages', cats: %w[ clothes food ])
-#puts
-##puts l.to_table(ref: 'wages', cats: %w[ clothes food ])
-puts l.to_table(ref: 'wages')
-##puts
+ref = argh['ref'] || argh['r'] || 'wages'
+ref = nil if argh['R']
+
+rexes, cats = arga.partition { |e| e.match?(/^\/.+\/$/) }
+rexes = rexes.collect { |e| e[1..-2] }
+
+puts l.to_table(ref: ref, cats: cats, rexes: rexes)
+
 ##puts l.to_csv(...
-#
-##p args
 

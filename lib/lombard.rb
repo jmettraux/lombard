@@ -41,24 +41,28 @@ class Lombard
 
   def to_a(opts={})
 
-    ref = opts[:ref] || opts[:refs] || 'wages'
+    ref = opts[:ref]
+
     kats = opts[:cats] || opts[:cat]; kats = [ kats ] if kats.is_a?(String)
+    kats = nil if kats.empty?
+
+    rexes = opts[:rexes]
+    rexes = nil if rexes.empty?
+
     sort = opts[:sort] || :en
 
     krefs = @items.values.select { |i| i[:ref] != 'no' && i[:kat] == ref }
-    nrefs = @items.values.select { |i| i[:en].index(ref) }
+    nrefs = @items.values.select { |i| i[:en].index(ref) } if ref
     refs = krefs.any? ? krefs : nrefs
 
     refs, items = @items.values
-      .inject([]) { |a, e|
-        a << e if (
-          kats == nil ||
-          kats.include?(e[:kat]) ||
-          kats.find { |k| e[:kat].index(k) })
-        a }
       .each { |e|
-        e[:r] = refs.index(e)
-        e[:rs] = refs.collect { |r| e[:v] / r[:v] } }
+        e[:r] = refs && refs.index(e)
+        e[:rs] = (refs || []).collect { |r| e[:v] / r[:v] } }
+      .select { |e|
+        e[:r] ||
+        ((kats == nil || kats.find { |k| e[:kat].index(k) }) &&
+         (rexes == nil || rexes.find { |r| e[:en].match?(r) })) }
       .sort_by { |e|
         e[sort] }
       .partition { |e|
@@ -76,7 +80,7 @@ class Lombard
 
     Terminal::Table.new do |ta|
 
-      w = items.first[:rs].size
+      w = items.first[:rs].size rescue 2
 
       ta.style = { border_top: false, border_bottom: false }
 
