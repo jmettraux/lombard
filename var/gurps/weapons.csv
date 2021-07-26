@@ -1,0 +1,21 @@
+
+en,extra,value
+
+Dagger,,4d
+"Sword, short",,28d
+"Sword, long",,32d
+"Sword, two-handed",,32d
+"Axe, hand",,4d
+"Axe, battle",,8d
+Mace,,4d
+Warhammer,,4d
+Spear,,4d
+Halberd,,4d
+"Bow, short",,16d
+"Bow, long",,20d
+"Arrows, for longbow",30,4d
+"Shield, round",,4d
+"Shield, kite",,5d
+Sling,,1f
+"Bullets, sling",8,1f
+
