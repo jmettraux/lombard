@@ -32,6 +32,7 @@ class Lombard
           en = item[:en]; next unless en
           item[:kat] = kat
           item[:v] = @coins.normalize(item[:value])
+          item[:v1] = @coins.change(item[:v])
           item[:ken] = [ kat, item[:en] ].join(' / ')
           h[item[:ken]] = item
         end
@@ -103,7 +104,7 @@ class Lombard
         ta << [
           e[:kat], e[:en],
           ar(e[:extra].to_s.match?(/\d+/) ? e[:extra] : ''),
-          ar(e[:value]), ar(@coins.change(e[:v])), ar(e[:v]),
+          ar(e[:value]), ar(e[:v1]), ar(e[:v]),
           *rs.collect { |ee| (e[:r] && ee == '1.0') ? 'R<<<' : ar(ee) } ]
       end
     end
@@ -111,7 +112,20 @@ class Lombard
 
   def to_csv(opts={})
 
-    a = to_a(opts)
+    items = to_a(opts)
+
+    w = items.first[:rs].size rescue 2
+    w = 0 if opts[:ref] == nil
+
+    heds = %w[ en extra value v1 v ] + ([ 'r' ] * w)
+    keys = %i[ en extra value v1 v ]
+
+    CSV.generate(encoding: 'UTF-8') do |csv|
+      csv << heds
+      items.each do |e|
+        csv << keys.collect { |k| e[k] } + e[:rs].collect { |ee| e[:r] }
+      end
+    end
   end
 
   class Value
