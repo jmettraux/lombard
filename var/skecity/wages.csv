@@ -1,0 +1,17 @@
+
+en,extra,value,ref
+
+Labourer,1 day,5/20sp,yes
+Master craftsman,1 day,1/20gp,yes
+
+Useless Peasant,1 day,2/20sp,no
+Scribe,1 day,6/20sp,no
+Archer,1 day,1/20gp,no
+Light Infantry,1 day,1/20gp,no
+Mason,1 day,1/20gp,no
+Camp Follower,1 day,15/20sp,no
+Armourer / Blacksmith,1 day,2/20gp,no
+Master Builder,1 day,5/20gp,no
+Barber-Surgeon,1 day,6/20gp,no
+Galley Crew,"1 day, 60 head",30/20gp,no
+
