@@ -119,8 +119,8 @@ class Lombard
     w = items.first[:rs].size rescue 2
     w = 0 if opts[:ref] == nil
 
-    heds = %w[ en extra value v1 v ] + ([ 'r' ] * w)
-    keys = %i[ en extra value v1 v ]
+    heds = %w[ kat en extra value v1 v ] + ([ 'r' ] * w)
+    keys = %i[ kat en extra value v1 v ]
 
     CSV.generate(encoding: 'UTF-8') do |csv|
       csv << heds
