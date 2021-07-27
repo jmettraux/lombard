@@ -35,6 +35,8 @@ class Lombard
           item[:v1] = @coins.change(item[:v])
           item[:ken] = [ kat, item[:en] ].join(' / ')
           h[item[:ken]] = item
+        rescue => err
+          fail "item: #{item.inspect} because of #{err.to_s}"
         end
         h }
 #.tap { |x| pp x }

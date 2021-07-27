@@ -1,0 +1,12 @@
+
+en,extra,value
+
+"Weapon, light",,5sp
+"Weapon, medium",,5gp
+"Weapon, heavy",,15gp
+Sling,,3sp
+Bow,,25sp
+Arrow,1,5d
+Bolt,1,5d
+Bullet,1,4d
+
