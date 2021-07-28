@@ -88,8 +88,7 @@ end
 ds.each_with_index do |d, i|
 
   puts
-  puts "### #{d}"
-  puts
+  puts "/// #{d}"
 
   l = Lombard.new(d)
 

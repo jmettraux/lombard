@@ -104,10 +104,11 @@ class Lombard
         rs = e[:rs].collect { |ee| ee.to_f.to_comma_s(1) }
 
         ta << [
-          e[:kat], e[:en],
-          ar(e[:extra].to_s.match?(/\d+/) ? e[:extra] : ''),
-          ar(e[:value]), ar(e[:v1]), ar(e[:v]),
-          *rs.collect { |ee| (e[:r] && ee == '1.0') ? 'R<<<' : ar(ee) } ]
+          pad(e[:kat], 9),
+          pad(e[:en], 27),
+          pad(e[:extra].to_s.match?(/\d+/) ? e[:extra] : '', 12, :right),
+          ar(e[:value], 8), ar(e[:v1], 8), ar(e[:v], 8),
+          *rs.collect { |ee| (e[:r] && ee == '1.0') ? 'R<<<' : ar(ee, 8) } ]
       end
     end
   end
@@ -327,7 +328,20 @@ class Lombard
 
   protected
 
-  def ar(v)
+  def pad(s, w, align=:left)
+
+    d = w - s.size; d = 0 if d < 0
+
+    if align == :left
+      s + ' ' * d
+    else
+      ' ' * d + s
+    end
+  end
+
+  def ar(v, w=nil)
+
+    v = pad(v.to_s, w, :right) if w
 
     { value: v, alignment: :right }
   end
