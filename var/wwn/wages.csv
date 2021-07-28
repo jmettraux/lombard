@@ -1,8 +1,10 @@
 
 en,extra,value,ref
 
-Skilled Artisan,1 day,5sp,yes
-Unskilled Laborer,1 day,1sp,yes
+# Skilled Artisan,1 day,5sp,yes
+# Unskilled Laborer,1 day,1sp,yes
+Master craftsman,1 day,5sp,yes
+Labourer,1 day,1sp,yes
 
 Bard of Small Repute,1 day,2sp,no
 Common Prostitute,1 day,2sp,no

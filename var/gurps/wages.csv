@@ -3,21 +3,21 @@
 
 en,extra,value,ref
 
-"Master craftsman",1d,3d,yes
-"Labourer",1d,1d1f,yes
+Master craftsman,1 day,3d,yes
+Labourer,1 day,1d1f,yes
 
-"craftsman, armourer",1d,5d2f,no
-"craftsman, carpenter",1d,3d,no
-"craftsman, mason",1d,4d,no
-"craftsman, weaver",1d,2d2f,no
-"apprentice carpenter",1d,1.75d,no
-"apprentice armourer",1d,3.75d,no
+"craftsman, armourer",1 day,5d2f,no
+"craftsman, carpenter",1 day,3d,no
+"craftsman, mason",1 day,4d,no
+"craftsman, weaver",1 day,2d2f,no
+"apprentice carpenter",1 day,1.75d,no
+"apprentice armourer",1 day,3.75d,no
 
-Archer,1d,3d,no
-"Archer, mounted",1d,6d,no
-Knight banneret,1d,48d,no
-Knight,1d,24d,no
-"Infantryman, armoured",1d,6d,no
-"Man-at-arms, mounted",1d,12d,no
-Squire,1d,12d,no
+Archer,1 day,3d,no
+"Archer, mounted",1 day,6d,no
+Knight banneret,1 day,48d,no
+Knight,1 day,24d,no
+"Infantryman, armoured",1 day,6d,no
+"Man-at-arms, mounted",1 day,12d,no
+Squire,1 day,12d,no
 
