@@ -87,7 +87,7 @@ end
 
 ds.each_with_index do |d, i|
 
-  puts
+  puts if i == 0
   puts "/// #{d}"
 
   l = Lombard.new(d)
