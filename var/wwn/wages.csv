@@ -1,0 +1,25 @@
+
+en,extra,value,ref
+
+Skilled Artisan,1 day,5sp,yes
+Unskilled Laborer,1 day,1sp,yes
+
+Bard of Small Repute,1 day,2sp,no
+Common Prostitute,1 day,2sp,no
+Skilled Interpreter,1 day,10sp,no
+Elite Courtesan,1 day,100sp,no
+Farmer,1 day,1sp,no
+"Guard, ordinary",1 day,2sp,no
+"Guard, sergeant",1 day,10sp,no
+Lawyer or Pleader,1 day,10sp,no
+Mage of Minor Abilities,1 day,200sp,no
+Mundane Physician,1 day,10sp,no
+"Porter, safe roads",1 day,1sp,no
+"Porter, danger",1 day,5sp,no
+Navigator,1 day,5sp,no
+Sage,1 answer,200sp,no
+Sailor,1 day,1sp,no
+Scribe or Clerk,1 day,3sp,no
+Veteran Sellsword,1 day,10sp,no
+Wilderness Guide,1 day,10sp,no
+
