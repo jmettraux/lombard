@@ -58,6 +58,7 @@ bin/lombard
 * https://mpra.ub.uni-muenchen.de/15748/1/MPRA_paper_15748.pdf
 * http://medieval.ucdavis.edu/120D/Money.html :-(
 * https://gurps.fandom.com/wiki/Medieval_Prices
+* https://docs.google.com/document/d/0B9RK2ETMFaHcTy1uelZnWUszN1E
 
 
 ## LICENSE
