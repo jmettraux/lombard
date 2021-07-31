@@ -1,0 +1,9 @@
+
+en,extra,value,ref
+
+Master craftsman,1 day,20f,yes
+Labourer,1 day,4f,yes
+
+Labourer m,1 month,24d,no
+Labourer y,1 year,288d,no
+
