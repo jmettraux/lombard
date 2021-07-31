@@ -313,9 +313,14 @@ class Lombard
 
       def load(path)
 
-        h, *d = ::CSV.read(path)
-          .reject(&:empty?)
-          .reject { |r| r[0].match(/^\s*#/) }
+        h, *d =
+          begin
+            ::CSV.read(path)
+          rescue => err
+            fail ArgumentError.new("failed to parse #{path} because of #{err}")
+          end
+            .reject(&:empty?)
+            .reject { |r| r[0].match(/^\s*#/) }
 
         d.map { |r|
           r.each_with_index.inject({}) { |hh, (c, i)|
