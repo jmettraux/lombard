@@ -52,7 +52,7 @@ class Lombard
     rexes = opts[:rexes]
     rexes = nil if rexes.empty?
 
-    sort = opts[:sort] || :en
+    sort = opts[:sort] || :name
 
     krefs = @items.values.select { |i| i[:ref] != 'no' && i[:kat] == ref }
     nrefs = @items.values.select { |i| i[:en].index(ref) } if ref
@@ -67,7 +67,7 @@ class Lombard
         ((kats == nil || kats.find { |k| e[:kat].index(k) }) &&
          (rexes == nil || rexes.find { |r| e[:en].match?(r) })) }
       .sort_by { |e|
-        e[sort] }
+        sort == :category ? "#{e[:kat]}::#{e[:en]}" : e[sort] }
       .partition { |e|
         e[:r] }
 

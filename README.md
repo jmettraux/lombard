@@ -48,6 +48,12 @@ bin/lombard
 
   bin/lombard wog -R
     #==> outputs list for WOG but without wages reference
+
+  bin/lombard gurps -r "/sword, long/"
+    #==> outputs Gurps list referenced on the price of a long sword
+
+  bin/lombard wog -k
+    #==> outputs list for WOG but sorting by category then name
 ```
 
 

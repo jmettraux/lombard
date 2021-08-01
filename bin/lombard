@@ -69,6 +69,9 @@ if argh['h'] || argh['help']
   puts "  #{$0} gurps -r \"/sword, long/\""
   puts "    #==> outputs Gurps list referenced on the price of a long sword"
   puts
+  puts "  #{$0} wog -k"
+  puts "    #==> outputs list for WOG but sorting by category then name"
+  puts
   exit 0
 end
 
@@ -111,10 +114,12 @@ ds.each_with_index do |d, i|
   rexes, cats = arga.partition { |e| e.match?(REX_REX) }
   rexes = rexes.collect { |e| Regexp.new(e[1..-2], Regexp::IGNORECASE) }
 
+  sort = (argh['k'] || argh['cat']) ? :category : :name
+
   if argh['csv'] || argh['c']
-    puts l.to_csv(ref: ref, cats: cats, rexes: rexes)
+    puts l.to_csv(ref: ref, cats: cats, rexes: rexes, sort: sort)
   else
-    puts l.to_table(ref: ref, cats: cats, rexes: rexes)
+    puts l.to_table(ref: ref, cats: cats, rexes: rexes, sort: sort)
   end
 
   puts
