@@ -3,8 +3,8 @@
 
 en,extra,value,ref
 
-Master craftsman,1 day,3d,yes
 Labourer,1 day,1d1f,yes
+Master craftsman,1 day,3d,yes
 
 "craftsman, armourer",1 day,5d2f,no
 "craftsman, carpenter",1 day,3d,no
