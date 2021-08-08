@@ -4,7 +4,7 @@ require 'rubygems'
 require 'bundler/setup'
 
 
-$: << 'lib'
+$: << File.absolute_path(File.join(__dir__, '..', 'lib'))
 require 'lombard'
 
 argh = {}
