@@ -131,6 +131,11 @@ class Lombard
     end
   end
 
+  def change(v)
+
+    @coins.change(v)
+  end
+
   class Value
 
     def initialize(s)

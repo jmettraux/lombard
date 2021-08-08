@@ -54,6 +54,14 @@ bin/lombard
 
   bin/lombard wog -k
     #==> outputs list for WOG but sorting by category then name
+
+  bin/lombard --all -o
+  bin/lombard --all --coins
+    #==> outputs list of coin systems for all lists
+
+  bin/lombard --all -c 2400d
+  bin/lombard --all --change 2400d
+    #==> outputs change for 2400d for all lists
 ```
 
 
