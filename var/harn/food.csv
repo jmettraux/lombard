@@ -1,0 +1,33 @@
+
+en,extra,value
+
+Oats,1 bushel,4d
+Apples,1 bushel,6d
+Beans,1 bushel,8d
+Barley,1 bushel,5d
+Rye,1 bushel,6d
+Wheat,1 bushel,8d
+
+Honey,1 gallon,12d
+Eggs,1 dozen,2d
+
+Hay,1 bushel,6d
+
+Milk,1 gallon,3d
+
+Beer,1 pint,1f
+Cider,1 pint,1f
+Brandy,1 pint,8d
+Mead,1 pint,2f
+Wine,1 pint,2d
+
+Salt,1 bushel,12d
+
+Brioche,1 dozen,2f
+Oatmeal cakes,1 dozen,1d
+"Bread, white",,2f
+"Bread, rye",,1f
+
+"Meal, warm",,1d
+"Meal, cold",,3f
+
