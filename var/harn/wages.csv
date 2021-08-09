@@ -2,8 +2,28 @@
 en,extra,value,ref
 
 Labourer,1 day,4f,yes
-Master craftsman,1 day,20f,yes
-
 Labourer m,1 month,24d,no
 Labourer y,1 year,288d,no
+Master craftsman,1 day,20f,yes
+Master craftsman m,1 day,120d,no
+Master craftsman y,1 day,6L,no
+
+Military officer,1 day,12d,no
+Military officer m,1 month,288d,no
+Military officer y,1 year,14L8s,no
+Archer,1 day,8f,no
+Archer m,1 month,48d,no
+Archer y,1 year,576d,no
+Sapper,1 day,6f,no
+Sapper m,1 month,36d,no
+Sapper y,1 year,432d,no
+Scout,1 day,6f,no
+Scout m,1 month,36d,no
+Scout y,1 year,432d,no
+Cavalryman,1 day,5f,no
+Cavalryman m,1 month,30d,no
+Cavalryman y,1 year,360d,no
+Foot solider,1 day,4f,no
+Foot solider m,1 month,24d,no
+Foot solider y,1 year,288d,no
 
