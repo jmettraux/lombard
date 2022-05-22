@@ -1,0 +1,34 @@
+
+en,extra,value
+
+Arrows,5,1d
+"Bed, fine",,60d
+"Blanket, Woolen",,10d
+"Boots, good",,10d
+"Cart for two oxen",,120d
+"Cloak, common",,5d
+"Cloak, embroidered",,20d
+"Cloth, silk",1yd,240d
+"Cloth, wool",1yd,4d
+"Clothes, fine",1 set,60d
+"Clothes, silk",1 set,2400d
+"Clothes, slave's",1 set,10d
+"Clothes, splendid",1 set,240d
+"Clothes, woolen",1 set,30d
+"Tools, Common artisan",,30d
+Cowhide,,8d
+"Healer's pouch",,4d
+"Ingot, iron",1 pound,5d
+"Kettle, iron, small",,20d
+"Plow, iron, heavy",,120d
+Prybar,,10d
+Quiver,,5d
+Rope,25 feet,5d
+"Sack, Leather",,5d
+"Satchel, Leather",,3d
+Sheepskin,,2d
+"Shoes, common",,5d
+Tinderbox,,3d
+"Waterskin",1 gallon,3d
+Wool,175 lb wey,120d
+
